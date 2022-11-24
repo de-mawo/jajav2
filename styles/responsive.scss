@@ -52,13 +52,12 @@
 .dash_header {
   @include mdScreenUp() {
     height: calc(3rem + 1rem);
-    padding: 0 2rem 0 calc(4.25rem + 2rem);
+    padding: 0 2rem 0  2rem;
   }
 }
 
 .dash_container {
   @include mdScreenUp() {
-    // margin: calc(3rem + 1rem) 0 0 0;
     padding-left: calc(4.25rem + 2rem);
   }
 }
@@ -75,9 +74,9 @@
   }
 }
 
-.chart_area {
-  @include smScreen() {
-    display: none;
-  }
-}
+// .chart_area {
+//   @include smScreen() {
+//     display: none;
+//   }
+// }
 

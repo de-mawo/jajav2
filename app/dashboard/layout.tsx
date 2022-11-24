@@ -10,6 +10,7 @@ export default function RootLayout({
     children: React.ReactNode
   }) {
     useEffect(() => {
+        import("bootstrap/js/dist/modal")
         import("bootstrap/js/dist/dropdown")
       
       }, []);
