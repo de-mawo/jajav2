@@ -74,9 +74,9 @@
   }
 }
 
-// .chart_area {
-//   @include smScreen() {
-//     display: none;
-//   }
-// }
+.chart_wrap {
+  @include smScreen() {
+    display: none;
+  }
+}
 

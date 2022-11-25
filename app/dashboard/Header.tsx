@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { HiBars3} from "react-icons/hi2";
+import { useSession } from "next-auth/react";
 
 
 
@@ -11,6 +12,9 @@ type Props = {
 
 
 const Header = ({show, showSideBar}: Props) => {
+
+    const { data: session } = useSession()
+
   return (
     <>
     <section className={`dash_header   `}>
@@ -27,7 +31,7 @@ const Header = ({show, showSideBar}: Props) => {
             <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
                 <li className="text-center">
                     <Image src="/img/propic.jpg" width={40} height={40} className="avatar rounded-circle" alt="avatar" />
-                    <p className="dropdown-item   p-2">Anne Van Schalk</p>
+                    <p className="dropdown-item   p-2">{session?.user?.name}</p>
                 </li>
                 <li>
                     <Link  href="/my-account" className="dropdown-item">
