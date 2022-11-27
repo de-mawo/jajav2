@@ -2,7 +2,13 @@ import React from 'react'
 import Rubric from './Rubric'
 import RubricForm from './RubricForm'
 
-const MarkingModal = () => {
+type Props = {
+    name: string;
+    surname: string;
+    bizzName: string;
+}
+
+const MarkingModal = ({name, surname, bizzName}: Props) => {
   return (
     <>
     <div className="modal grade_modal fade" id="GradeRubricModal" tabIndex={-1 }aria-labelledby="GradeRubricModal" aria-hidden="true">
@@ -15,7 +21,7 @@ const MarkingModal = () => {
                     <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div className="modal-body">
-                    <RubricForm  />
+                    <RubricForm  name={name} surname={surname} bizzName={bizzName} />
                     <Rubric />
                 </div>
                 <div className="modal-footer">

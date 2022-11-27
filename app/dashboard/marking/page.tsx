@@ -3,10 +3,24 @@ import users from '../../../data/user.json'
 import Image from 'next/image'
 import { HiPencilSquare } from "react-icons/hi2";
 import MarkingModal from './MarkingModal';
+import useSWR from 'swr';
+import userFetcher from '../../../lib/fetchUsers';
+import { useState } from 'react';
 
 
 const Marking = () => {
 
+    const { data: users, error, mutate} = useSWR("/api/user/user", userFetcher)
+
+    const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')
+    const [bizzName, setBizzName] = useState('')
+
+    const setUserDetails = (name: string, surname: string, bizzName: string) => {
+        setName(name)
+        setBizzName(bizzName)
+        setSurname(surname)
+    }
 
   
   
@@ -27,33 +41,39 @@ const Marking = () => {
                         </thead>
                         <tbody>
                             {users?.map(user => (
-                                <tr key={user.id}>
-                                    <td>{user.id}</td>
+                                <tr key={user._id}>
+                                    <td>{user._id}</td>
                                     <td>
                                         <picture> 
-                                      <Image src={user.avatar} alt={user.first_name} width={50} height={50}   className="rounded-circle" />
+                                      <Image src={user.image} alt={user.image} width={50} height={50}   className="rounded-circle" />
                                         </picture>
 
                                     </td>
                                     <td>
-                                        {user.first_name}
+                                        {user.name}
                                     </td>
                                     <td>
-                                        {user.last_name}
+                                        {user.surname}
                                     </td>
                                     <td>{user.business_name}</td>
                                     <td> 
                                     <span className='edit_icon'>
-                                    <HiPencilSquare className='fs-5 ' data-bs-toggle="modal" data-bs-target="#GradeRubricModal"/>
+                                    <HiPencilSquare
+                                    onClick={() => setUserDetails(user.name, user.surname, user.business_name)}
+                                     className='fs-5' 
+                                     data-bs-toggle="modal"
+                                      data-bs-target="#GradeRubricModal"
+                                      />
                                     </span>
                                     </td>
                                 </tr>
+                                
                             ))}
                         </tbody>
                     </table>
                 </div>
-            </div>
-            <MarkingModal/>
+            </div> 
+            <MarkingModal name={name} surname={surname} bizzName={bizzName} />
     </>
   )
 }

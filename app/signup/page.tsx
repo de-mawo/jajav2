@@ -3,7 +3,6 @@
 import axios from "axios";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { Formik } from "formik";
 import { useRouter } from 'next/navigation';
 const Year = new Date().getFullYear();
 
@@ -13,10 +12,11 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
+  const [message , setMessage] = useState('')
 
   const register = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-      const res = await axios.post(
+       await axios.post(
         "/api/register",
         { name, surname, email, password },
         {
@@ -26,13 +26,18 @@ const SignUp = () => {
           },
         }
       ).then().catch(error => {
-        console.log(error);
+        setMessage(error.message);
+        console.log(error.response.data.error);
+        
         
       })
-      console.log(res);
+     router.push('/')
       
     
   };
+
+  console.log(message);
+  
 
   return (
     <div className=" d-flex align-items-center justify-content-center vh-100 pt_100 home_pg">
@@ -43,7 +48,7 @@ const SignUp = () => {
                 <h3>Register </h3>
                 <p>Create a new account</p>
               </div>
-
+                <span className="error_msg"> <p>{message}</p></span>
               <div className="form-floating mt-2 mb-3">
                 <input
                   type="email"

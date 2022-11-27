@@ -2,7 +2,7 @@
 import Link from "next/link";
 import {getProviders,  signIn,  } from "next-auth/react";
 import SignInwithProvider from "./SignInwithProvider";
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { Formik } from "formik";
 
@@ -20,30 +20,22 @@ const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const loginUser = async(actions: any) =>{
-    actions.setSubmitting(false);
+  const loginUser = async(e: FormEvent<HTMLFormElement>) =>{
+    e.preventDefault();
    const res = await signIn("credentials", {
      email: email,
      password: password,
      redirect: false,
-     callbackUrl: `${window.location.protocol}/dashboard}`
+     callbackUrl: `${window.location.origin}/dashboard}`
     })
-    //TODO: add a tooltip notification
-    res?.error ? console.log(res.error) : router.push('/')
+    //TODO: add a toast notification
+    res?.error ? console.log(res.error) : router.push('/dashboard')
     
   }
 
   return (
-    <Formik
-    initialValues={{}} // { email: "", password: "" }
-    validateOnChange={false}
-    validateOnBlur={false}
-    onSubmit={(_, actions) => {
-      loginUser(actions);
-    }}
-  >
-    {(props) => (
-  <form>
+   
+  <form onSubmit={loginUser}>
     <div className="text-center">
       <h3>Welcome </h3>
       <p>Please Sign In.</p>
@@ -70,7 +62,7 @@ const Login = () => {
           />
       <label htmlFor="password">Password</label>
     </div>
-    <button className="w-100 default_btn" type="submit"   disabled={props.isSubmitting}>
+    <button className="w-100 default_btn" type="submit"   >
       Sign in
     </button>
     {/* <p className="text-center"> or</p> */}
@@ -98,8 +90,7 @@ const Login = () => {
       </p>
     </div>
   </form>
-  )}
-  </Formik>
+  
   )
 }
 

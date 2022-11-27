@@ -1,8 +1,23 @@
-import users from '../../../data/user.json'
+'use client'
 import Image from 'next/image'
 import { HiPencil } from "react-icons/hi2";
+import useSWR from 'swr';
+import userFetcher from '../../../lib/fetchUsers';
+import { UserTypes } from '../../../types';
 
-const Users = () => {
+
+
+
+
+
+export default  function Users  () {
+
+    const { data: users, error, mutate} = useSWR("/api/user/user", userFetcher)
+
+   
+
+    
+    
   return (
     <>
     <div className="dashboard_table mt-5 ">
@@ -22,19 +37,19 @@ const Users = () => {
                        </thead>
                        <tbody>
                            {users?.map(user => (
-                               <tr key={user.id}>
-                                   <td>{user.id}</td>
+                               <tr key={user._id}>
+                                   <td>{user._id}</td>
                                    <td>
                                        <picture> 
-                                     <Image src={user.avatar} alt={user.first_name} width={50} height={50}   className="rounded-circle" />
+                                     <Image src={user.image} alt={user.name} width={50} height={50}   className="rounded-circle" />
                                        </picture>
 
                                    </td>
                                    <td>
-                                       {user.first_name}
+                                       {user.name}
                                    </td>
                                    <td>
-                                       {user.last_name}
+                                       {user.surname}
                                    </td>
                                    <td>{user.email}</td>
                                    <td>{user.business_name}</td>
@@ -56,4 +71,5 @@ const Users = () => {
   )
 }
 
-export default Users
+
+

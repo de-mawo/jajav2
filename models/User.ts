@@ -39,10 +39,17 @@ const userSchema = new Schema({
         type: Boolean,
         default: false,
       },
-      
+      country: {
+        type: String,
+        default: 'South Africa',
+      },
+      business_name: {
+        type: String,
+        default: 'ABC Limited',
+      },
       competition: {
-        type: mongoose.Types.ObjectId,
-        default: '2022',
+        type: String,
+        default: 'bip2022',
       },
      
 }, { timestamps: true} )

@@ -50,9 +50,9 @@ a {
   &:hover {
     opacity: 0.7;
   }
-  &:disabled{
+  &:disabled {
     cursor: not-allowed;
-    opacity: 0.2
+    opacity: 0.2;
   }
   @content;
 }
@@ -109,9 +109,8 @@ a {
 /*BUTTONS*/
 .default_btn {
   background-color: $blue;
-  
+
   @include button() {
-    
   }
 }
 
@@ -119,7 +118,6 @@ a {
   background-color: $green;
 
   @include button() {
-   
   }
 }
 
@@ -127,7 +125,6 @@ a {
   background-color: $pink;
 
   @include button() {
-    
   }
 }
 
@@ -148,6 +145,13 @@ a {
   padding: 2.5rem;
   border-radius: 0.3rem;
   width: 37.5rem;
+  .error_msg {
+    p {
+      color: $pink;
+      background: $light_pink;
+      padding: 0.5rem;
+    }
+  }
 }
 
 /*DASHBOARD HEADER*/
@@ -223,7 +227,7 @@ a {
   width: 4.25rem;
   height: 100vh;
   padding: 0.5rem 0 0 0;
-  transition: 1.5s;
+  transition: 0.5s;
   z-index: 100;
   background-color: $white;
 
@@ -260,7 +264,7 @@ a {
 }
 
 .dash_container {
-  transition: 1.5s;
+  transition: 0.5s;
   min-height: 62.5rem;
   position: relative;
   background: $light_blue;
@@ -272,7 +276,7 @@ a {
 
 .add_body_padding {
   padding-left: calc(4.25rem + 1rem);
-  transition: 1.5s;
+  transition: 0.5s;
 }
 
 .dashboard_table {
@@ -410,7 +414,6 @@ a {
 }
 
 .grade_modal {
- 
   .modal-footer {
     justify-content: space-evenly;
   }
@@ -512,9 +515,9 @@ a {
       .comp_name {
         font-weight: bold;
         background: $light_green;
-        padding: .5rem;
+        padding: 0.5rem;
         color: $green;
-        border-radius: .5rem;
+        border-radius: 0.5rem;
       }
     }
     ul {

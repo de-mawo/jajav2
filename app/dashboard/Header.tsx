@@ -15,6 +15,8 @@ const Header = ({show, showSideBar}: Props) => {
 
     const { data: session } = useSession()
 
+    // console.log(session)
+
   return (
     <>
     <section className={`dash_header   `}>
@@ -26,17 +28,17 @@ const Header = ({show, showSideBar}: Props) => {
 
         <div className="dropdown ">
             <a href="#" className="d-flex align-items-center justify-content-center p-3 link-light text-decoration-none dropdown-toggle" id="dropdownUser3" data-bs-toggle="dropdown" aria-expanded="false">
-                <Image src="/img/propic.jpg" width={50} height={50} className="avatar rounded-circle" alt="avatar" />
+                <Image src={session?.user.image} width={50} height={50} className="avatar rounded-circle" alt="avatar" />
             </a>
             <ul className="dropdown-menu text-small shadow" aria-labelledby="dropdownUser3">
                 <li className="text-center">
-                    <Image src="/img/propic.jpg" width={40} height={40} className="avatar rounded-circle" alt="avatar" />
+                    <Image src={session?.user.image} width={40} height={40} className="avatar rounded-circle" alt="avatar" />
                     <p className="dropdown-item   p-2">{session?.user?.name}</p>
                 </li>
                 <li>
                     <Link  href="/my-account" className="dropdown-item">
                     
-                        <i className="ri-user-line"></i> <span>Profile </span>
+                        <i className="ri-user-line"></i> <span>{session?.user.role} </span>
                                        </Link>
                     
                 </li>

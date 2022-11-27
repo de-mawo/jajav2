@@ -41,8 +41,10 @@ const SideBar = ({ show }: Props) => {
           <div className="main_links">
             <Image
               src="/img/jaja_logo2.png"
-              width={100}
-              height={100}
+    
+              width={50}
+              height={50}
+
               alt="logo"
               className="nav_logo"
             />
@@ -51,7 +53,7 @@ const SideBar = ({ show }: Props) => {
               {Adminlinks.map((link, index) => (
                 <Link className="nav_link" href={link.url} key={index}>
                   <span className="link_icon fs-2">{link.icon}</span>
-                  <span className="ps-3">{link.title}</span>
+                  <span className="ps-4">{link.title}</span>
                 </Link>
               ))}
             </div>
@@ -59,7 +61,7 @@ const SideBar = ({ show }: Props) => {
           <a href="#" className="nav_link">
             {" "}
             <HiOutlineArrowRightOnRectangle className="fs-2 link_icon" />{" "}
-            <span className="dash_nav_name ps-3">Logout</span>{" "}
+            <span className="dash_nav_name ps-4">Logout</span>{" "}
           </a>
         </nav>
       </div>

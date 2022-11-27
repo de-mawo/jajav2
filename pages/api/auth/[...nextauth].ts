@@ -36,6 +36,8 @@ export default NextAuth(  {
           const user = await User.findOne({
             email: credentials?.email,
           });
+
+          
   
           // Email Not found
           if (!user) {
@@ -45,18 +47,19 @@ export default NextAuth(  {
           // Check hased password with DB hashed password
           const isPasswordCorrect = await compare(
             credentials!.password,
-            user.hashedPassword
+            user.password,
           );
   
           // Incorrect password
           if (!isPasswordCorrect) {
             throw new Error("Password is incorrect");
           }
-  
+      
           return user;
         },
       }),
   ],
+  
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: '/',
@@ -69,6 +72,26 @@ export default NextAuth(  {
   jwt: {
     secret: process.env.NEXTAUTH_JWT_SECRET,
   },
+  callbacks: {
+    jwt: async ({ token, user }) => {
+      if (user) {
+        token.role = user.role
+      }
+  // console.log(token);
+  
+      return token
+    },
+    async session({ session, token, user }) {
+      // Add role value to user object so it is passed along with session
+      if (session.user) {
+        session.user.role = token.role;
+      }
+      // console.log(session)
+      return session;
+    },
+    
+  },
+  
 })
 
 

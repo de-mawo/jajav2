@@ -8,6 +8,7 @@ const DashLayoutWrapper = ({ children }: any) => {
   useEffect(() => {
     import("bootstrap/js/dist/modal");
     import("bootstrap/js/dist/dropdown");
+    import("bootstrap/js/dist/tooltip");
   }, []);
   const [show, setShow] = useState(false);
 

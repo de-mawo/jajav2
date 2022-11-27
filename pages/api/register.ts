@@ -43,7 +43,7 @@ export default async function handler(
 if(req.method !== "POST" ) {
     return res.status(405).json({error: ' HTTP Method not allowed '}) 
 }
-console.log('Are we hitting the register route ndepapi apa')
+// console.log('Are we hitting the register route ndepapi apa')
 
 const { name, password, email, surname} = req.body;
  
@@ -60,7 +60,7 @@ if (errorMessage) {
     const newUser = new User({
         name, surname,
         email,
-        hashedPassword,
+        password: hashedPassword,
       });
     
       await newUser
@@ -69,9 +69,10 @@ if (errorMessage) {
           res.status(200).json({ msg: "Successfuly created new User: " + newUser })
         )
         .catch((err: string) =>
+        //TODO: remove the text "Error on api/register" that should not be sent to the frontend
           res.status(400).json({ error: "Error on '/api/register': " + err })
         );
-console.log(newUser);
+// console.log(newUser);
 
 
   }

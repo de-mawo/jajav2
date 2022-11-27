@@ -1,10 +1,20 @@
- export type User = {
-    id: number;
-    first_name: string;
-    last_name: string;
+ export type UserTypes = {
+    _id: number;
+    name: string;
+    surname: string;
     email: string;
-    concat_name: string;
-    business_name: string;
+    password: string;
+    image: string;
     role: string;
-    avatar: string;
+    root: boolean;
+    competition: string;
+    createdAt: number;
+    updatedAt: number;
+    business_name: string;
+}
+
+export type Role = {
+    user?: string;
+    admin?: string;
+    judge?: string;
 }

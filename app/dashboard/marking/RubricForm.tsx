@@ -1,46 +1,28 @@
 import React from 'react'
+import { UserTypes } from '../../../types';
 
-const RubricForm = () => {
+type Props = {
+    name: string;
+    surname: string;
+    bizzName: string;
+}
+
+const RubricForm = ({name, surname, bizzName}: Props) => {
+
+
   return (
     <>
    <div className="rubric_form container"> 
                                 <div className="row">
                                 <div className="col-lg-6 col-md-6">
                                     <div className="form-group">
-                                        <input 
-                                            type="date" 
-                                            name="date" 
-                                            placeholder="Date" 
-                                            className="form-control" 
-                                            // value={date}
-                                            // onChange={handleChange} 
-                                            required 
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="form-group">
-                                        <input 
-                                            type="text" 
-                                            name="business" 
-                                            placeholder="Business Name" 
-                                            className="form-control" 
-                                            // value={business}
-                                            // onChange={handleChange} 
-                                            required 
-                                        />
-                                    </div>
-                                </div>
-
-                                <div className="col-lg-6 col-md-6">
-                                    <div className="form-group">
+                                    <label htmlFor="">Name</label>
                                         <input 
                                             type="text" 
                                             name="participant" 
                                             placeholder="Presenter Name" 
                                             className="form-control" 
-                                            // value={participant}
+                                            value={name}
                                             // onChange={handleChange} 
                                             required 
                                         />
@@ -49,6 +31,39 @@ const RubricForm = () => {
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="form-group">
+                                        <label htmlFor="">Surname</label>
+                                        <input 
+                                            type="text" 
+                                            name="surname" 
+                                            placeholder="Date" 
+                                            className="form-control" 
+                                            value={surname}
+                                            // onChange={handleChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="form-group">
+                                    <label htmlFor="">Business Name</label>
+                                        <input 
+                                            type="text" 
+                                            name="business" 
+                                            placeholder="Business Name" 
+                                            className="form-control" 
+                                            value={bizzName}
+                                            // onChange={handleChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+
+                                
+
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="form-group">
+                                    <label htmlFor="">Judge Name</label>
                                         <input 
                                             type="text" 
                                             name="judge" 
