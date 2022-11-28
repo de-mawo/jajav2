@@ -36,7 +36,7 @@ const SignUp = () => {
     
   };
 
-  console.log(message);
+  // console.log(message);
   
 
   return (

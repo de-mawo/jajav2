@@ -28,7 +28,8 @@ export default  function Users  () {
                                <th>User Id</th>
                                <th>Avatar</th>
                                <th>First Name</th>
-                               <th>Last Name</th>
+                               <th>Country</th>
+                               <th>Email</th>
                                <th>Email</th>
                                <th>Business Name</th>
                                <th>Role</th>
@@ -50,6 +51,9 @@ export default  function Users  () {
                                    </td>
                                    <td>
                                        {user.surname}
+                                   </td>
+                                   <td>
+                                       {user.country}
                                    </td>
                                    <td>{user.email}</td>
                                    <td>{user.business_name}</td>

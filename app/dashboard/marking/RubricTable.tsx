@@ -1,6 +1,12 @@
+import { ChangeEvent } from "react";
 import matrix from "../../../data/matrix";
 
-const Rubric = () => {
+type Props = {
+  points?: {};
+  onChangePoints: (e: ChangeEvent<HTMLSelectElement>) => void
+}
+
+const RubricTable = ({ onChangePoints}: Props) => {
   return (
     <>
       <div className="rubric_table">
@@ -32,6 +38,7 @@ const Rubric = () => {
                     <select
                       className="form-select form-control"
                       name={point.score_title}
+                      onChange={onChangePoints}
                       aria-label="Default select example"
                     >
                       <option value={0}> 0 </option>
@@ -61,4 +68,4 @@ const Rubric = () => {
   );
 };
 
-export default Rubric;
+export default RubricTable;

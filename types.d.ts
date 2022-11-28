@@ -11,6 +11,7 @@
     createdAt: number;
     updatedAt: number;
     business_name: string;
+    country: string;
 }
 
 export type Role = {
@@ -18,3 +19,15 @@ export type Role = {
     admin?: string;
     judge?: string;
 }
+
+export type PointTypes = {
+    name: string;
+    surname: string;
+    bizzName: string;
+    judge: string;
+    country: string;
+    comment: string;
+    totalPoints: number;
+}
+
+

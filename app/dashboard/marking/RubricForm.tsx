@@ -1,14 +1,25 @@
-import React from 'react'
-import { UserTypes } from '../../../types';
+import { ChangeEvent, useState } from "react";
+
 
 type Props = {
     name: string;
     surname: string;
     bizzName: string;
+    judge: string;
+    country: string;
+    updateComment: (arg: string) => void
+    comment: string;
 }
 
-const RubricForm = ({name, surname, bizzName}: Props) => {
+const RubricForm = ({name, surname, bizzName, judge, country, updateComment}: Props) => {
+    
+    const [comment, setComment] = useState('');
 
+
+  const submitComment = (e: ChangeEvent<HTMLInputElement>) => {
+    setComment(e.target.value)
+    updateComment(comment)
+  }
 
   return (
     <>
@@ -49,6 +60,22 @@ const RubricForm = ({name, surname, bizzName}: Props) => {
                                     <label htmlFor="">Business Name</label>
                                         <input 
                                             type="text" 
+                                            name="country" 
+                                            placeholder="Country" 
+                                            className="form-control" 
+                                            value={country}
+                                            // onChange={handleChange} 
+                                            required 
+                                        />
+                                    </div>
+                                </div>
+
+
+                                <div className="col-lg-6 col-md-6">
+                                    <div className="form-group">
+                                    <label htmlFor="">Business Name</label>
+                                        <input 
+                                            type="text" 
                                             name="business" 
                                             placeholder="Business Name" 
                                             className="form-control" 
@@ -63,13 +90,13 @@ const RubricForm = ({name, surname, bizzName}: Props) => {
 
                                 <div className="col-lg-6 col-md-6">
                                     <div className="form-group">
-                                    <label htmlFor="">Judge Name</label>
+                                    <label htmlFor="">Judge</label>
                                         <input 
                                             type="text" 
                                             name="judge" 
                                             placeholder="Judge Name" 
                                             className="form-control" 
-                                            // value={judge}
+                                            value={judge}
                                             // onChange={handleChange} 
                                             required 
                                         />
@@ -83,8 +110,8 @@ const RubricForm = ({name, surname, bizzName}: Props) => {
                                             name="comment" 
                                             placeholder="Comments" 
                                             className="form-control" 
-                                            // value={judge}
-                                            // onChange={handleChange} 
+                                            value={comment}
+                                            onChange={submitComment}
                                             required 
                                         />
                                     </div>

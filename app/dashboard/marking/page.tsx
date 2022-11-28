@@ -15,11 +15,13 @@ const Marking = () => {
     const [name, setName] = useState('')
     const [surname, setSurname] = useState('')
     const [bizzName, setBizzName] = useState('')
+    const [country, setCountry] = useState('')
 
-    const setUserDetails = (name: string, surname: string, bizzName: string) => {
+    const setUserDetails = (name: string, surname: string, bizzName: string, country: string) => {
         setName(name)
         setBizzName(bizzName)
         setSurname(surname)
+        setCountry(country)
     }
 
   
@@ -35,6 +37,7 @@ const Marking = () => {
                                 <th>Avatar</th>
                                 <th>First Name</th>
                                 <th>Last Name</th>
+                                <th>Country</th>
                                 <th>Business Name</th>
                                 <th>Mark </th>
                             </tr>
@@ -55,11 +58,14 @@ const Marking = () => {
                                     <td>
                                         {user.surname}
                                     </td>
+                                    <td>
+                                        {user.country}
+                                    </td>
                                     <td>{user.business_name}</td>
                                     <td> 
                                     <span className='edit_icon'>
                                     <HiPencilSquare
-                                    onClick={() => setUserDetails(user.name, user.surname, user.business_name)}
+                                    onClick={() => setUserDetails(user.name, user.surname, user.business_name, user.country)}
                                      className='fs-5' 
                                      data-bs-toggle="modal"
                                       data-bs-target="#GradeRubricModal"
@@ -73,7 +79,7 @@ const Marking = () => {
                     </table>
                 </div>
             </div> 
-            <MarkingModal name={name} surname={surname} bizzName={bizzName} />
+            <MarkingModal name={name} surname={surname} bizzName={bizzName} country={country} />
     </>
   )
 }
