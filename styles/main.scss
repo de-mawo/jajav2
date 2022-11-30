@@ -83,15 +83,15 @@ a {
 }
 
 .form-check-input[type="checkbox"] {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.2rem;
+  height: 1.2rem;
   margin-right: 0.3rem;
 }
 
 .form-check-input {
   &:checked {
-    background-color: $blue;
-    border-color: $light_blue;
+    background-color: $green;
+    border-color: $body_color;
   }
 
   &:focus {
@@ -285,6 +285,13 @@ a {
   border-radius: 0.6rem;
   margin-bottom: 1.5rem;
 
+  .point_calc{
+    display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap
+  }
+
   .table-responsive {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -391,7 +398,7 @@ a {
 
       &::placeholder {
         font: 1rem sans-serif;
-        color: $gray;
+        // color: $gray;
       }
 
       &:focus {

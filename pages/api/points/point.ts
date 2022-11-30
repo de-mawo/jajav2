@@ -1,7 +1,8 @@
+/* eslint-disable import/no-anonymous-default-export */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
-import dbConnect from '../../lib/dbConnect';
-import Point from '../../models/Point'
+import dbConnect from '../../../lib/dbConnect';
+import Point from '../../../models/Point'
 
 
 dbConnect();
@@ -11,7 +12,10 @@ type Data = {
   msg?: string;
 }
 
-export default async function handler(
+
+
+
+export default async function addPoints(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
@@ -29,3 +33,4 @@ export default async function handler(
   }
   
 }
+

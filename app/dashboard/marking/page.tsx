@@ -4,7 +4,7 @@ import Image from 'next/image'
 import { HiPencilSquare } from "react-icons/hi2";
 import MarkingModal from './MarkingModal';
 import useSWR from 'swr';
-import userFetcher from '../../../lib/fetchUsers';
+import {userFetcher} from '../../../lib/fetcher';
 import { useState } from 'react';
 
 

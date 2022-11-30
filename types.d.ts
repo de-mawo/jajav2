@@ -21,6 +21,7 @@ export type Role = {
 }
 
 export type PointTypes = {
+    _id: number;
     name: string;
     surname: string;
     bizzName: string;
@@ -28,6 +29,7 @@ export type PointTypes = {
     country: string;
     comment: string;
     totalPoints: number;
+    checked?: boolean;
 }
 
 

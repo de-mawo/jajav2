@@ -2,8 +2,7 @@
 import Image from 'next/image'
 import { HiPencil } from "react-icons/hi2";
 import useSWR from 'swr';
-import userFetcher from '../../../lib/fetchUsers';
-import { UserTypes } from '../../../types';
+import {userFetcher} from '../../../lib/fetcher';
 
 
 

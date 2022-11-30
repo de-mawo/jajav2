@@ -32,9 +32,10 @@ const MarkingModal = ({ name, surname, bizzName, country }: Props) => {
     setPoints({ ...points, [name]: value });
   };
 
+  //TODO: This clear form function is not working properly
   const clearForm = () => {
     setComment('');
-    setPoints(0);
+    setPoints({});
 };
 
   const pointsArr = Object.values(points);
