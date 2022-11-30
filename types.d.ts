@@ -33,3 +33,12 @@ export type PointTypes = {
 }
 
 
+export type ScoreTypes = {
+    _id: number;
+    name: string;
+    surname: string;
+    bizzName: string;
+    country: string;
+    Average: number;
+}
+

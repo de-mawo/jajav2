@@ -6,6 +6,7 @@ import SearchBox from "./SearchBox";
 import { HiOutlineSearch, HiOutlineCursorClick } from "react-icons/hi";
 import { useState } from "react";
 import { PointTypes } from "../../../types";
+import AwardModal from "./AwardModal";
 
 type Props = {
     points: PointTypes[];
@@ -18,7 +19,19 @@ type Props = {
 
 const ScoreTable = ({points, isCheck, handleCheckAll, Average}: Props) => {
 
-  console.log( 'Points @ the child', points)
+
+  const [name, setName] = useState('')
+    const [surname, setSurname] = useState('')   
+    const [bizzName, setBizzName] = useState('')
+    const [country, setCountry] = useState('')
+
+const setScoreDetails = (name: string, surname: string,bizzName: string, country: string) => {
+        setName(name)
+        setSurname(surname)
+        setCountry(country)
+        setBizzName(bizzName)
+
+}
  
 //TODO: Remove this competitionName from being hard Coded
     const competitionName: string = "bip2022";
@@ -36,9 +49,6 @@ const ScoreTable = ({points, isCheck, handleCheckAll, Average}: Props) => {
           <div className="">
             <span className="fw-bold"> Average: {Average}</span>
           </div>
-          <div className="">
-            <button className="secondary_btn"> Award <HiOutlineCursorClick/> </button>
-          </div>
         </div>
 
         <div className="table-responsive ">
@@ -54,6 +64,7 @@ const ScoreTable = ({points, isCheck, handleCheckAll, Average}: Props) => {
                 <th>Comments</th>
                 <th>Score </th>
                 <th>Competition</th>
+                <th>Award</th>
               </tr>
             </thead>
             <tbody>
@@ -76,14 +87,26 @@ const ScoreTable = ({points, isCheck, handleCheckAll, Average}: Props) => {
                   <td>
                     <span className="compete">{competitionName}</span>
                   </td>
+                  <td>
+                  <span className='edit_icon'>
+                                    <HiOutlineCursorClick
+                                    onClick={() => setScoreDetails(point.name, point.surname,point.bizzName,point.country )}
+                                     className='fs-5' 
+                                     data-bs-toggle="modal"
+                                      data-bs-target="#AwardModal"
+                                      />
+                                    </span>
+                  </td>
                 </tr>
               ))}
             </tbody>
           </table>
         </div>
       </div>
+      <AwardModal name={name} surname={surname} Average={Average} bizzName={bizzName} country={country}/>
     </>
   );
 };
 
-export default ScoreTable;
+
+export default ScoreTable

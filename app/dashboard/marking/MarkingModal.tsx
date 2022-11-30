@@ -52,7 +52,7 @@ const MarkingModal = ({ name, surname, bizzName, country }: Props) => {
   const submitPoints = async () => {
     await axios
       .post(
-        "/api/point",
+        "/api/points/point",
         { comment, name, surname, bizzName, country, totalPoints, judge },
         {
           headers: {

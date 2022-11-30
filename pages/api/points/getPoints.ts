@@ -16,12 +16,13 @@ type Data = {
 
 export default async function getPoints(req: NextApiRequest,
     res: NextApiResponse<Data>) {
+
+      //TODO: implement the right query param from front-end 
       const getQueryValue = req.query
       const query = Object.values(getQueryValue)
 
       const q = query[0]
 
-      console.log(q);
       
       
       
