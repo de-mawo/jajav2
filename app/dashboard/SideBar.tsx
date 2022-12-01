@@ -8,6 +8,7 @@ import {
   HiOutlinePresentationChartLine,
 } from "react-icons/hi2";
 import Image from "next/image";
+import { signOut } from "next-auth/react";
 
 type Props = {
   show: boolean;
@@ -46,7 +47,7 @@ const SideBar = ({ show }: Props) => {
               height={50}
 
               alt="logo"
-              className="nav_logo"
+              className="rounded-circle"
             />
 
             <div className="nav_list mt-5">
@@ -58,10 +59,10 @@ const SideBar = ({ show }: Props) => {
               ))}
             </div>
           </div>
-          <a href="#" className="nav_link">
+          <a href="#" className="nav_link" onClick={() => signOut({  callbackUrl: `/` })}>
             {" "}
-            <HiOutlineArrowRightOnRectangle className="fs-2 link_icon" />{" "}
-            <span className="dash_nav_name ps-4">Logout</span>{" "}
+            <HiOutlineArrowRightOnRectangle className="fs-2 link_icon" />
+            <span className="dash_nav_name ps-4">Logout</span>
           </a>
         </nav>
       </div>

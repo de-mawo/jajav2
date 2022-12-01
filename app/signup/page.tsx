@@ -4,6 +4,7 @@ import axios from "axios";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
 import { useRouter } from 'next/navigation';
+import Image from "next/image";
 const Year = new Date().getFullYear();
 
 const SignUp = () => {
@@ -12,11 +13,17 @@ const SignUp = () => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [password, setPassword] = useState("");
-  const [message , setMessage] = useState('')
+  const [message, setMessage] = useState<{ type?: string; content?: string }>({
+    type: '',
+    content: ''
+  });
+  const [loading, setLoading] = useState(false);
 
   const register = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-       await axios.post(
+    setLoading(true);
+    try {
+     const res = await axios.post(
         "/api/register",
         { name, surname, email, password },
         {
@@ -25,13 +32,31 @@ const SignUp = () => {
             "Content-Type": "application/json",
           },
         }
-      ).then().catch(error => {
-        setMessage(error.message);
-        console.log(error.response.data.error);
+      )
+      if (res.status === 200) {
+        setMessage({
+          type: 'success',
+          content: 'Registration Successfull.'
+        });
+        setLoading(false);
+      }
+      router.push('/')
+    } catch (error: any) {
+      
+      // console.log(error.response.data.error)
+
+      const message = error.response.data.error
+      
+      setMessage({ type: 'error', content: message });
+      setLoading(false);
+    }
+      
+      
+           
         
         
-      })
-     router.push('/')
+    
+    
       
     
   };
@@ -45,10 +70,23 @@ const SignUp = () => {
        
             <form onSubmit={register}>
               <div className="text-center">
+              <Image
+              src="/img/jaja_logo2.png"
+    
+              width={90}
+              height={90}
+
+              alt="logo"
+              className=" rounded-circle"
+            />
                 <h3>Register </h3>
                 <p>Create a new account</p>
               </div>
-                <span className="error_msg"> <p>{message}</p></span>
+              { message.content && 
+              
+                <span className={`${message.type === 'error' ? 'error_msg' : 'success_msg'}`}> <p>{message.content}</p></span>
+              }
+
               <div className="form-floating mt-2 mb-3">
                 <input
                   type="email"
@@ -95,7 +133,7 @@ const SignUp = () => {
               <button
                 className="w-100 default_btn"
                 type="submit"
-                
+                disabled={loading}
               >
                 Sign up
               </button>

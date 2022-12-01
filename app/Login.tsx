@@ -1,10 +1,11 @@
 'use client';
 import Link from "next/link";
-import {getProviders,  signIn,  } from "next-auth/react";
-import SignInwithProvider from "./SignInwithProvider";
+import Image from "next/image";
+import { signIn,  } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import { useRouter } from 'next/navigation';
 import { Formik } from "formik";
+
 
 const Year = new Date().getFullYear();
 
@@ -19,17 +20,27 @@ const Login = () => {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState<{ type?: string; content?: string }>({
+    type: '',
+    content: ''
+  });
+  const [loading, setLoading] = useState(false);
 
   const loginUser = async(e: FormEvent<HTMLFormElement>) =>{
     e.preventDefault();
+    setLoading(true);
    const res = await signIn("credentials", {
      email: email,
      password: password,
      redirect: false,
      callbackUrl: `${window.location.origin}/dashboard}`
     })
+    
     //TODO: add a toast notification
-    res?.error ? console.log(res.error) : router.push('/dashboard')
+    if(res?.error ){
+      setMessage({ type: 'error',  content: res.error });
+    } else router.push('/dashboard')
+    
     
   }
 
@@ -37,9 +48,22 @@ const Login = () => {
    
   <form onSubmit={loginUser}>
     <div className="text-center">
+    <Image
+              src="/img/jaja_logo2.png"
+    
+              width={90}
+              height={90}
+
+              alt="logo"
+              className="nav_logo rounded-circle"
+            />
       <h3>Welcome </h3>
       <p>Please Sign In.</p>
     </div>
+    { message.content && 
+              
+              <span className={`${message.type === 'error' ? 'error_msg' : 'success_msg'}`}> <p>{message.content}</p></span>
+            }
 
     <div className="form-floating mt-2 mb-3">
     <input
@@ -62,7 +86,7 @@ const Login = () => {
           />
       <label htmlFor="password">Password</label>
     </div>
-    <button className="w-100 default_btn" type="submit"   >
+    <button className="w-100 default_btn" type="submit"  disabled={loading}>
       Sign in
     </button>
     {/* <p className="text-center"> or</p> */}
@@ -86,7 +110,7 @@ const Login = () => {
       <p className="text-muted">
         &copy; 
         <span className="pe-2"> {Year}</span>
-        Jaja
+        Jaja. All rights reserved
       </p>
     </div>
   </form>

@@ -11,11 +11,11 @@ export default function RootLayout({
 
     return (
         <>
-        <Providers > 
+        {/* <Providers >  */}
             <DashLayoutWrapper>
               {children}
             </DashLayoutWrapper>
-        </Providers>
+        {/* </Providers> */}
         </>
      
     )
