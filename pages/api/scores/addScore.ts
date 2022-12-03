@@ -1,6 +1,7 @@
 /* eslint-disable import/no-anonymous-default-export */
 // Next.js API route support: https://nextjs.org/docs/api-routes/introduction
 import type { NextApiRequest, NextApiResponse } from 'next'
+import { getToken } from 'next-auth/jwt';
 import dbConnect from '../../../lib/dbConnect';
 import Score from '../../../models/Score'
 
@@ -19,11 +20,16 @@ export default async function addPoints(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  const token = await getToken({ req })
+
+  // console.log(token?.role);
+
   try {
-    const { name, surname, bizzName, country, Average } = req.body
+    if (token?.role !== "admin" ) return res.status(400).json({ error: "You're  not authorized to award scores!" });
+    const { email, name, surname, bizzName, country, Average } = req.body
 
     const newScore = new Score({ 
-         name, surname, bizzName, country, Average
+      email,  name, surname, bizzName, country, Average
     })
     
     await newScore.save()

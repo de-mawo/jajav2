@@ -7,8 +7,10 @@ const scoreSchema = new Schema({
   bizzName: String,
   name: String,
   surname: String,
+  email: String,
   country: String,
   Average: Number,
+
      
 },  )
 

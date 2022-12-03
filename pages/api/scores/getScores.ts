@@ -16,8 +16,15 @@ export default async function getPoints(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  // const getQueryValue = req.query
+  // const query = Object.values(getQueryValue)
+
+  // console.log(query);
+  
+
+  // const q = query[0]
   try {
-    const scores = await Score.find();
+    const scores = await Score.find(  );
     // console.log(points);
 
     res.json({

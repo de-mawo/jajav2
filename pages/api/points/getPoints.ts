@@ -27,7 +27,7 @@ export default async function getPoints(req: NextApiRequest,
       
       
     try {
-      const points = await Point.find(  {name:{$regex: q}}  )
+      const points = await Point.find(  {email:{$regex: q}}  )
       // console.log(points);
       
           res.json({

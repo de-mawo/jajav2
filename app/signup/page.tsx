@@ -3,12 +3,12 @@
 import axios from "axios";
 import Link from "next/link";
 import { FormEvent, useState } from "react";
-import { useRouter } from 'next/navigation';
+// import { useRouter } from 'next/navigation';
 import Image from "next/image";
 const Year = new Date().getFullYear();
 
 const SignUp = () => {
-  const router = useRouter();
+  // const router = useRouter();
   const [email, setEmail] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
@@ -36,11 +36,10 @@ const SignUp = () => {
       if (res.status === 200) {
         setMessage({
           type: 'success',
-          content: 'Registration Successfull.'
+          content: 'Success. Check your email to verify'
         });
         setLoading(false);
       }
-      router.push('/')
     } catch (error: any) {
       
       // console.log(error.response.data.error)
@@ -50,14 +49,7 @@ const SignUp = () => {
       setMessage({ type: 'error', content: message });
       setLoading(false);
     }
-      
-      
-           
-        
-        
     
-    
-      
     
   };
 
@@ -65,7 +57,7 @@ const SignUp = () => {
   
 
   return (
-    <div className=" d-flex align-items-center justify-content-center vh-100 pt_100 home_pg">
+    <div className=" d-flex align-items-center justify-content-center vh-100 pt_100 home_pg"> 
       <main className="auth_form">
        
             <form onSubmit={register}>
@@ -86,26 +78,25 @@ const SignUp = () => {
               
                 <span className={`${message.type === 'error' ? 'error_msg' : 'success_msg'}`}> <p>{message.content}</p></span>
               }
-
+              { message.type === 'success' ?  null : (
+              <>
               <div className="form-floating mt-2 mb-3">
-                <input
-                  type="email"
-                  className="form-control"
-                  name="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                />
-                <label htmlFor="email">Email address</label>
-              </div>
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)} />
+              <label htmlFor="email">Email address</label>
+            </div>
 
-              <div className="form-floating mt-2 mb-3">
+            <div className="form-floating mt-2 mb-3">
                 <input
                   type="text"
                   className="form-control"
                   name="name"
                   value={name}
-                  onChange={(e) => setName(e.target.value)}
-                />
+                  onChange={(e) => setName(e.target.value)} />
                 <label htmlFor="name">Name</label>
               </div>
 
@@ -115,8 +106,7 @@ const SignUp = () => {
                   className="form-control"
                   name="surname"
                   value={surname}
-                  onChange={(e) => setSurname(e.target.value)}
-                />
+                  onChange={(e) => setSurname(e.target.value)} />
                 <label htmlFor="surname">Surname</label>
               </div>
 
@@ -126,10 +116,10 @@ const SignUp = () => {
                   className="form-control"
                   name="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                />
+                  onChange={(e) => setPassword(e.target.value)} />
                 <label htmlFor="password">Password</label>
               </div>
+
               <button
                 className="w-100 default_btn"
                 type="submit"
@@ -137,6 +127,10 @@ const SignUp = () => {
               >
                 Sign up
               </button>
+              </>
+            
+
+)}
 
               <p className="mt-5 mb-3 text-muted">
                 Already Registered?{" "}

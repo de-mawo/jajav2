@@ -34,14 +34,14 @@ export default NextAuth(  {
   
           // Find user with the email
           const user = await User.findOne({
-            email: credentials?.email,
+            email: credentials?.email, isEmailVerified: { $ne: false } 
           });
 
           
   
           // Email Not found
           if (!user) {
-            throw new Error("Email is not registered");
+            throw new Error("Email is not registered/verified");
           }
   
           // Check hased password with DB hashed password

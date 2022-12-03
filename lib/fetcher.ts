@@ -1,12 +1,14 @@
 import { PointTypes, ScoreTypes, UserTypes } from "../types";
 
-export const userFetcher = async () => {
-  const res = await fetch("/api/user/user");
+export const userFetcher = async (...args: any[]) => {
+  const [url, query] = args;
 
-  //   if (!res.ok) {
-  //     // This will activate the closest `error.js` Error Boundary
-  //     throw new Error("Failed to fetch data");
-  //   }
+ 
+  const [name, value] = query.split(" ");
+
+  const res = await fetch(`${url}?${name}=${query}`);
+
+  
   const data = await res.json();
 
   // console.log(data)

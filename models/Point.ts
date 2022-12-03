@@ -10,7 +10,8 @@ const pointSchema = new Schema({
   judge: String,
   country: String,
   totalPoints: Number,
-  comment: String
+  comment: String,
+  email: String,
      
 },  )
 

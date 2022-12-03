@@ -27,7 +27,8 @@ export type PointTypes = {
     bizzName: string;
     judge: string;
     country: string;
-    comment: string;
+    comment?: string;
+    email: string;
     totalPoints: number;
     checked?: boolean;
 }
@@ -35,6 +36,7 @@ export type PointTypes = {
 
 export type ScoreTypes = {
     _id: number;
+    email: string;
     name: string;
     surname: string;
     bizzName: string;

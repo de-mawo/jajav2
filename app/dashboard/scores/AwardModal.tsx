@@ -1,4 +1,5 @@
 import axios from "axios";
+import toast from "react-hot-toast";
 
 type Props = {
     name: string;
@@ -6,19 +7,19 @@ type Props = {
     Average: number;
     bizzName: string;
     country: string
+    email: string;
   };
 
-const AwardModal = ({name, surname, Average, bizzName, country}: Props) => {
+const AwardModal = ({email, name, surname, Average, bizzName, country}: Props) => {
 
 
     const submitScore = async () => {
-
-        console.log(name , surname , Average);
-        
-        await axios
+      const notification = toast.loading("Awarding...");
+        try { 
+       const res = await axios
           .post(
             "/api/scores/addScore",
-            {  name, surname, bizzName, country, Average, },
+            { email, name, surname, bizzName, country, Average,  },
             {
               headers: {
                 Accept: "application/json",
@@ -26,12 +27,22 @@ const AwardModal = ({name, surname, Average, bizzName, country}: Props) => {
               },
             }
           )
-          .then()
-          .catch((error) => {
-            // setMessage(error.message);
-            console.log(error.response.data.error);
+          if (res.status === 200) {
+            toast.success("Score Awarded.", {
+                id: notification,
+              });
+          }
+        } catch (error: any) {
+          toast.error("Oops there is an error!", {
+            id: notification,
           });
+        }
+
+
+
       };
+
+
   return (
     <>
     <div
@@ -64,6 +75,11 @@ const AwardModal = ({name, surname, Average, bizzName, country}: Props) => {
 
             </div>
 
+            <div >
+                <p>Email: {email}</p>
+                
+            </div>
+
             <div>
                <p> Aggregate Score: {Average}</p> 
 
@@ -91,6 +107,7 @@ const AwardModal = ({name, surname, Average, bizzName, country}: Props) => {
               type="button"
               className="tertiary_btn"
               onClick={submitScore}
+              data-bs-dismiss="modal"
             >
               Award
             </button>

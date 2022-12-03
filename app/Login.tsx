@@ -4,7 +4,7 @@ import Image from "next/image";
 import { signIn,  } from "next-auth/react";
 import { FormEvent, useState } from "react";
 import { useRouter } from 'next/navigation';
-import { Formik } from "formik";
+
 
 
 const Year = new Date().getFullYear();
@@ -101,7 +101,7 @@ const Login = () => {
 
     <p className="mt-3 mb-3 text-muted">
       Forgot Password?{" "}
-      <Link href="/password-reset" className="ps-2">
+      <Link href="/forgot-password" className="ps-2">
         Reset
       </Link>
     </p>

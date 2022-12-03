@@ -3,7 +3,7 @@ import { ChangeEvent, useState } from "react";
 import useSWR from "swr";
 import { pointFetcher } from "../../../lib/fetcher";
 import ScoreTable from "./ScoreTable";
-import SearchBox from "./SearchBox";
+import SearchBox from "../SearchBox";
 
 const Scores = () => {
   const [query, setQuery] = useState("");
@@ -19,7 +19,7 @@ const Scores = () => {
 
   const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
     setQuery(e.target.value);
-  };
+  };  
 
   const handleCheckAll = () => {
     let AverageArr: number[] = [];

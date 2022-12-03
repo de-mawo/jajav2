@@ -46,13 +46,12 @@
   }
 }
 
-
 /*DASHBOARD */
 
 .dash_header {
   @include mdScreenUp() {
     height: calc(3rem + 1rem);
-    padding: 0 2rem 0  2rem;
+    padding: 0 2rem 0 2rem;
   }
 }
 
@@ -64,13 +63,13 @@
 
 .review {
   @include mdScreenUp() {
-    width: calc(4.25rem + 9.75rem);
+    width: calc(4.25rem + 9.75rem)!important;
   }
 }
 
 .add_body_padding {
   @include mdScreenUp() {
-    padding-left: calc(4.25rem + 11.75rem);
+    padding-left: calc(4.25rem + 11.75rem)!important;
   }
 }
 
@@ -79,4 +78,3 @@
     display: none;
   }
 }
-

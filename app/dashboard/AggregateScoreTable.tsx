@@ -14,6 +14,7 @@ const AggregateScoreTable = ({scores}: Props) => {
                            <tr>
                                <th>Name</th>
                                <th>Surname</th>
+                               <th>Email</th>
                                <th>Business Name</th>
                                <th>Country</th>
                                <th>Aggregate Score</th>
@@ -29,6 +30,7 @@ const AggregateScoreTable = ({scores}: Props) => {
                                    <td>
                                        {score.surname}
                                    </td>
+                                   <td>{score.email}</td>
                                    <td>{score.bizzName}</td>
                                    <td>
                                        {score.country}

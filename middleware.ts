@@ -13,7 +13,7 @@ export default withAuth(
     if (
       
     req.nextUrl.pathname.startsWith("/dashboard/settings") &&
-        req.nextauth.token?.role !== "admin" && req.nextauth.token?.role !== "judge" 
+        req.nextauth.token?.role !== "admin" 
     ) {
       return NextResponse.redirect(new URL("/dashboard", req.url));
     } else if (
@@ -28,7 +28,7 @@ export default withAuth(
         return NextResponse.redirect(new URL("/dashboard", req.url));
       }else if (
         req.nextUrl.pathname.startsWith("/dashboard/users") &&
-        req.nextauth.token?.role !== "admin" && req.nextauth.token?.role !== "judge" 
+        req.nextauth.token?.role !== "admin" 
       ) {
         return NextResponse.redirect(new URL("/dashboard", req.url));
       }
@@ -43,9 +43,6 @@ export default withAuth(
 
 export const config = {
   matcher: [
-    // "/dashboard/scores/:path*" &&
-    //   "/dashboard/marking/:path*" &&
-    //   "/dashboard/settings/:path*" &&
     "/dashboard/:path*",
     "/dashboard",
   ],

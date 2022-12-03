@@ -16,7 +16,7 @@ const SearchBox = ({onChangeSearch}: Props) => {
                 <input
                  className="form-control border-1 form-control-lg"
                  type="search"
-                 placeholder="Search By Participant's Name"
+                 placeholder="Search By Email"
                  aria-label="Search"
                  onChange={onChangeSearch}
                   />

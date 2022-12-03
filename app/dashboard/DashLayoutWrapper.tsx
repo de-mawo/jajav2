@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import {  Toaster } from "react-hot-toast";
 import Header from "./Header";
 import SideBar from "./SideBar";
 
@@ -18,6 +19,7 @@ const DashLayoutWrapper = ({ children }: any) => {
 
   return (
     <div>
+      <Toaster/>
       <SideBar show={show} />
       <section className={`dash_container ${show ? "add_body_padding" : " "} `}>
         <Header show={show} showSideBar={showSideBar} />

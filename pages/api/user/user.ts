@@ -18,8 +18,15 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
+  //TODO: implement the right query param from front-end 
+  const getQueryValue = req.query
+  const query = Object.values(getQueryValue)
+
+  const q = query[0]
+
   try {
-    const users = await User.find().select('-password')
+
+    const users = await User.find( {email:{$regex: q}} ).select('-password')
    
     
   res.status(200).json({users, result: users.length})

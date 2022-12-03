@@ -6,6 +6,8 @@ import Chart from './Chart'
 
 const Dashboard = () => {
   const { data: scores, error, mutate} = useSWR("/api/user/user", scoreFetcher)
+
+  
   
   return (
     <>

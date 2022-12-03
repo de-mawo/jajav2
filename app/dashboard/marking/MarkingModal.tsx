@@ -1,20 +1,27 @@
-'use client';
+"use client";
 
 import { useSession } from "next-auth/react";
 import RubricTable from "./RubricTable";
 import RubricForm from "./RubricForm";
-import { ChangeEvent,  useState } from "react";
+import { ChangeEvent, useState } from "react";
 import axios from "axios";
+import toast from "react-hot-toast";
+// import ClientLoader from "../ClientLoader";
+
 
 type Props = {
   name: string;
   surname: string;
   bizzName: string;
   country: string;
+  email: string;
+  reloadPage?: () => void;
 };
 
-const MarkingModal = ({ name, surname, bizzName, country }: Props) => {
+const MarkingModal = ({ name, surname, bizzName, country, email }: Props) => {
   const { data: session } = useSession();
+
+  
 
   //TODO:check if the role is actually a judge
   const judge = session?.user.name;
@@ -27,16 +34,13 @@ const MarkingModal = ({ name, surname, bizzName, country }: Props) => {
 
   const [points, setPoints] = useState({});
 
+  //TODO: Refactor this to go into state
+  const [loading, setLoading] = useState(false);
+
   const onChangePoints = (e: ChangeEvent<HTMLSelectElement>) => {
     const { name, value } = e.target;
     setPoints({ ...points, [name]: value });
   };
-
-  //TODO: This clear form function is not working properly
-  const clearForm = () => {
-    setComment('');
-    setPoints({});
-};
 
   const pointsArr = Object.values(points);
 
@@ -50,27 +54,50 @@ const MarkingModal = ({ name, surname, bizzName, country }: Props) => {
   );
 
   const submitPoints = async () => {
-    await axios
-      .post(
-        "/api/points/point",
-        { comment, name, surname, bizzName, country, totalPoints, judge },
+    setLoading(true);
+    const notification = toast.loading("Adding new Point...");
+    try {
+      const res = await axios.post(
+        "/api/points/addPoints",
+        {
+          comment,
+          name,
+          surname,
+          bizzName,
+          country,
+          totalPoints,
+          judge,
+          email,
+        }, 
         {
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
         }
-      )
-      .then()
-      .catch((error) => {
-        // setMessage(error.message);
-        console.log(error.response.data.error);
+      );
+
+      if (res.status === 200) {
+        toast.success("New Point Added.", {
+          id: notification,
+        });
+        window.location.reload();
+        setComment("");
+        setPoints({});
+      }
+      //TODO: This is not working
+
+      setLoading(false);
+    } catch (error) {
+      toast.error("Something went wrong.",{
+        id: notification
       });
-      clearForm()
+    }
   };
 
   return (
     <>
+    {/* { loading && <ClientLoader/> } */}
       <div
         className="modal grade_modal fade"
         id="GradeRubricModal"
@@ -118,6 +145,7 @@ const MarkingModal = ({ name, surname, bizzName, country }: Props) => {
                 type="button"
                 className="tertiary_btn"
                 onClick={submitPoints}
+                data-bs-dismiss="modal"
               >
                 Save
               </button>

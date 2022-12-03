@@ -1,5 +1,5 @@
 
-import { Providers } from "../providers";
+
 import DashLayoutWrapper from "./DashLayoutWrapper";
 
 export default function RootLayout({
@@ -11,11 +11,11 @@ export default function RootLayout({
 
     return (
         <>
-        {/* <Providers >  */}
+      
             <DashLayoutWrapper>
               {children}
             </DashLayoutWrapper>
-        {/* </Providers> */}
+    
         </>
      
     )

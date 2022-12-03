@@ -1,8 +1,9 @@
 import Link from "next/link";
 import Image from "next/image";
 import { HiBars3 } from "react-icons/hi2";
-import { signOut, useSession } from "next-auth/react";
+import { signOut, useSession  } from "next-auth/react";
 import { HiOutlineArrowRightOnRectangle } from "react-icons/hi2";
+
 
 type Props = {
   show: boolean;
@@ -12,7 +13,7 @@ type Props = {
 const Header = ({ show, showSideBar }: Props) => {
   const { data: session } = useSession();
 
-  // console.log(session)
+ 
 
   return (
     <>

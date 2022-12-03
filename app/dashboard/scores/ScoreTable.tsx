@@ -1,9 +1,6 @@
 
-import useSWR from "swr";
-import scores from "../../../data/scores.json";
-import { pointFetcher } from "../../../lib/fetcher";
-import SearchBox from "./SearchBox";
-import { HiOutlineSearch, HiOutlineCursorClick } from "react-icons/hi";
+
+import { HiOutlineCursorClick } from "react-icons/hi";
 import { useState } from "react";
 import { PointTypes } from "../../../types";
 import AwardModal from "./AwardModal";
@@ -24,11 +21,13 @@ const ScoreTable = ({points, isCheck, handleCheckAll, Average}: Props) => {
     const [surname, setSurname] = useState('')   
     const [bizzName, setBizzName] = useState('')
     const [country, setCountry] = useState('')
+    const [email, setEmail] = useState('')
 
-const setScoreDetails = (name: string, surname: string,bizzName: string, country: string) => {
+const setScoreDetails = (email: string, name: string, surname: string,bizzName: string, country: string) => {
+        setEmail(email)
         setName(name)
         setSurname(surname)
-        setCountry(country)
+        setCountry(country) 
         setBizzName(bizzName)
 
 }
@@ -56,6 +55,7 @@ const setScoreDetails = (name: string, surname: string,bizzName: string, country
             <thead className="sticky-top bg-white">
               <tr>
               <th></th>
+                <th>Email</th>
                 <th>Name</th>
                 <th>Surname</th>
                 <th>Business</th>
@@ -71,6 +71,7 @@ const setScoreDetails = (name: string, surname: string,bizzName: string, country
               {points?.map((point) => (
                 <tr key={point._id}>
                     <td>  <input className="form-check-input"  type="checkbox" checked={isCheck} readOnly/></td>
+                    <td>{point.email}</td>
                   <td>{point.name}</td>
 
                   <td>{point.surname}</td>
@@ -90,7 +91,7 @@ const setScoreDetails = (name: string, surname: string,bizzName: string, country
                   <td>
                   <span className='edit_icon'>
                                     <HiOutlineCursorClick
-                                    onClick={() => setScoreDetails(point.name, point.surname,point.bizzName,point.country )}
+                                    onClick={() => setScoreDetails(point.email, point.name, point.surname,point.bizzName, point.country )}
                                      className='fs-5' 
                                      data-bs-toggle="modal"
                                       data-bs-target="#AwardModal"
@@ -103,7 +104,7 @@ const setScoreDetails = (name: string, surname: string,bizzName: string, country
           </table>
         </div>
       </div>
-      <AwardModal name={name} surname={surname} Average={Average} bizzName={bizzName} country={country}/>
+      <AwardModal email={email} name={name} surname={surname} Average={Average} bizzName={bizzName} country={country} />
     </>
   );
 };

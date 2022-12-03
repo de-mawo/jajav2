@@ -1,24 +1,24 @@
 'use client'
 import Image from 'next/image'
+import { ChangeEvent, useState } from 'react';
 import { HiPencil } from "react-icons/hi2";
 import useSWR from 'swr';
 import {userFetcher} from '../../../lib/fetcher';
-
-
-
-
+import SearchBox from '../SearchBox';
 
 
 export default  function Users  () {
 
-    const { data: users, error, mutate} = useSWR("/api/user/user", userFetcher)
+    const [query, setQuery] = useState("");
 
-   
+    const { data: users, error, mutate} = useSWR(["/api/user/user", query], userFetcher)
 
-    
-    
+    const onChangeSearch = (e: ChangeEvent<HTMLInputElement>) => {
+        setQuery(e.target.value);
+      };  
   return (
     <>
+    <SearchBox onChangeSearch={onChangeSearch}/>
     <div className="dashboard_table mt-5 ">
                <div className="table-responsive text-nowrap"> 
                    <table className="table  align-middle mb-0 text-center">
@@ -28,7 +28,6 @@ export default  function Users  () {
                                <th>Avatar</th>
                                <th>First Name</th>
                                <th>Country</th>
-                               <th>Email</th>
                                <th>Email</th>
                                <th>Business Name</th>
                                <th>Role</th>
