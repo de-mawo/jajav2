@@ -13,9 +13,6 @@ const Login = () => {
 
 
     const router = useRouter();
-
-   
- 
   
 
   const [email, setEmail] = useState("");
@@ -38,6 +35,7 @@ const Login = () => {
     
     //TODO: add a toast notification
     if(res?.error ){
+      setLoading(false);
       setMessage({ type: 'error',  content: res.error });
     } else router.push('/dashboard')
     

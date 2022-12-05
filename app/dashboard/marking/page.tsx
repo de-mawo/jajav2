@@ -1,11 +1,12 @@
 'use client'
 import Image from 'next/image'
-import { HiPencilSquare } from "react-icons/hi2";
+import { HiOutlinePencilSquare, HiOutlineNoSymbol } from "react-icons/hi2";
 import MarkingModal from './MarkingModal';
 import useSWR from 'swr';
 import {userFetcher} from '../../../lib/fetcher';
 import { ChangeEvent, useState } from 'react';
 import SearchBox from '../SearchBox';
+import { useSession } from 'next-auth/react';
 
 
 
@@ -19,7 +20,7 @@ const Marking = () => {
         setQuery(e.target.value);
       };  
 
-
+      const { data: session } = useSession();
 
     
     const [name, setName] = useState('')
@@ -78,14 +79,16 @@ const Marking = () => {
                                     </td>
                                     <td>{user.business_name}</td>
                                     <td> 
+                                    { session?.user.email != user.email ? ( 
                                     <span className='edit_icon'>
-                                    <HiPencilSquare
+                                    <HiOutlinePencilSquare
                                     onClick={() => setUserDetails(user.name, user.surname, user.business_name, user.country, user.email)}
                                      className='fs-5' 
                                      data-bs-toggle="modal"
                                       data-bs-target="#GradeRubricModal"
                                       />
                                     </span>
+                                        ) : <HiOutlineNoSymbol style={{color: '#EA59AC'}}/>}
                                     </td>
                                 </tr>
                                 

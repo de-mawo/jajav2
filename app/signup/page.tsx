@@ -41,13 +41,13 @@ const SignUp = () => {
         setLoading(false);
       }
     } catch (error: any) {
-      
+      setLoading(false);
       // console.log(error.response.data.error)
 
       const message = error.response.data.error
       
       setMessage({ type: 'error', content: message });
-      setLoading(false);
+     
     }
     
     

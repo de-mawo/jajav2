@@ -56,6 +56,7 @@ export default  function Users  () {
                                    <td>{user.email}</td>
                                    <td>{user.business_name}</td>
                                    <td>{user.role}</td>
+                                   <td></td>
                                    <td>
                                     <span className='edit_icon'>
                                     <HiPencil className='fs-5'/>
