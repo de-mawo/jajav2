@@ -19,16 +19,12 @@ const ForgotPassword = () => {
     e.preventDefault();
     setLoading(true);
     try {
-      const res = await axios.post(
-        "/api/requestPassReset",
-         email ,
-        {
-          headers: {
-            Accept: "application/json",
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const res = await axios.post("/api/requestPassReset", email, {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+      });
       if (res.status === 200) {
         setMessage({
           type: "success",

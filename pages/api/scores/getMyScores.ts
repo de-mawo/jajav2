@@ -13,18 +13,15 @@ type Data = {
 };
 
 export default async function getPoints(
-  _req: NextApiRequest,
+  req: NextApiRequest,
   res: NextApiResponse<Data>
 ) {
-  // const getQueryValue = req.query
-  // const query = Object.values(getQueryValue)
+  const getQueryValue = req.query;
+  const query = Object.values(getQueryValue);
 
-  // console.log(query);
-  
-
-  // const q = query[0]
+  const q = query[0];
   try {
-    const scores = await Score.find(  );
+    const scores = await Score.find({ email: { $regex: q } });
     // console.log(points);
 
     res.json({

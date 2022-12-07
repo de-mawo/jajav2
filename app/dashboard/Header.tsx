@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { HiBars3 } from "react-icons/hi2";
 import { signOut, useSession  } from "next-auth/react";
-import { HiOutlineArrowRightOnRectangle } from "react-icons/hi2";
+import { HiOutlineArrowRightOnRectangle, HiOutlineUserCircle } from "react-icons/hi2";
 
 
 type Props = {
@@ -56,9 +56,9 @@ const Header = ({ show, showSideBar }: Props) => {
               <p className="dropdown-item   p-2">{session?.user?.name}</p>
             </li>
             <li>
-              <Link href="/my-account" className="dropdown-item">
-                <i className="ri-user-line"></i>{" "}
-                <span>{session?.user.role} </span>
+              <Link href="/dashboard/profile" className="dropdown-item">
+                <HiOutlineUserCircle className="fs-3"/>
+                <span>My Profile </span>
               </Link>
             </li>
             <hr />

@@ -37,6 +37,25 @@ export const pointFetcher = async (...args: any[]) => {
   return points;
 };
 
+export const myPointFetcher = async (...args: any[]) => {
+  //TODO: implement the right query param name to send to backend
+  // console.log(...args)
+  const [url, query] = args;
+
+  // console.log('This is url:',url);
+
+  // console.log('This is query:',query);
+  const [name, value] = query.split(" ");
+
+  const res = await fetch(`${url}?${name}=${query}`);
+
+  const data = await res.json();
+
+  const points: PointTypes[] = data.points;
+
+  return points;
+};
+
 export const scoreFetcher = async () => {
   const res = await fetch("/api/scores/getScores");
 
