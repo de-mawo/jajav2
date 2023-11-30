@@ -24,9 +24,12 @@ export default async function handler(
 
   const q = query[0]
 
+  console.log(q);
+  
+
   try {
 
-    const users = await User.find( {email:{$regex: q}} ).select('-password')
+    const users = await User.find( {name:{$regex: q}} ).select('-password')
    
     
   res.status(200).json({users, result: users.length})

@@ -79,8 +79,11 @@ const Marking = () => {
                                     </td>
                                     <td>{user.business_name}</td>
                                     <td> 
-                                    { session?.user.email != user.email ? ( 
-                                    <span className='edit_icon'>
+                                    { session?.user.email === user.email || user.role === "admin" || user.role === "judge" ? ( 
+                                    
+                                    <HiOutlineNoSymbol style={{color: '#EA59AC'}}/>
+                                        ) : 
+                                        <span className='edit_icon'>
                                     <HiOutlinePencilSquare
                                     onClick={() => setUserDetails(user.name, user.surname, user.business_name, user.country, user.email)}
                                      className='fs-5' 
@@ -88,7 +91,8 @@ const Marking = () => {
                                       data-bs-target="#GradeRubricModal"
                                       />
                                     </span>
-                                        ) : <HiOutlineNoSymbol style={{color: '#EA59AC'}}/>}
+                                        
+                                        }
                                     </td>
                                 </tr>
                                 

@@ -1005,17 +1005,26 @@
   resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.7.5.tgz#5f19d2b85a98e9558036f6a3cacc8819420f05cf"
   integrity sha512-JCB8C6SnDoQf0cNycqd/35A7MjcnK+ZTqE7judS6o7utxUCg6imJg3QK2qzHKszlTjcj2cn+NwMB2i96ubpj7w==
 
-"@types/react-dom@18.0.9":
-  version "18.0.9"
-  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.0.9.tgz#ffee5e4bfc2a2f8774b15496474f8e7fe8d0b504"
-  integrity sha512-qnVvHxASt/H7i+XG1U1xMiY5t+IHcPGUK7TDMDzom08xa7e86eCeKOiLZezwCKVxJn6NEiiy2ekgX8aQssjIKg==
+"@types/react-dom@^18.2.17":
+  version "18.2.17"
+  resolved "https://registry.yarnpkg.com/@types/react-dom/-/react-dom-18.2.17.tgz#375c55fab4ae671bd98448dcfa153268d01d6f64"
+  integrity sha512-rvrT/M7Df5eykWFxn6MYt5Pem/Dbyc1N8Y0S9Mrkw2WFCRiqUgw9P7ul2NpwsXCSM1DVdENzdG9J5SreqfAIWg==
   dependencies:
     "@types/react" "*"
 
-"@types/react@*", "@types/react@18.0.25":
+"@types/react@*":
   version "18.0.25"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-18.0.25.tgz#8b1dcd7e56fe7315535a4af25435e0bb55c8ae44"
   integrity sha512-xD6c0KDT4m7n9uD4ZHi02lzskaiqcBxf4zi+tXZY98a04wvc0hi/TcCPC2FOESZi51Nd7tlUeOJY8RofL799/g==
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    csstype "^3.0.2"
+
+"@types/react@^18.2.39":
+  version "18.2.39"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-18.2.39.tgz#744bee99e053ad61fe74eb8b897f3ab5b19a7e25"
+  integrity sha512-Oiw+ppED6IremMInLV4HXGbfbG6GyziY3kqAwJYOR0PNbkYDmLWQA3a95EhdSmamsvbkJN96ZNN+YD+fGjzSBA==
   dependencies:
     "@types/prop-types" "*"
     "@types/scheduler" "*"
@@ -3247,10 +3256,10 @@ react-dom@18.2.0:
     loose-envify "^1.1.0"
     scheduler "^0.23.0"
 
-react-hot-toast@^2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-2.4.0.tgz#b91e7a4c1b6e3068fc599d3d83b4fb48668ae51d"
-  integrity sha512-qnnVbXropKuwUpriVVosgo8QrB+IaPJCpL8oBI6Ov84uvHZ5QQcTp2qg6ku2wNfgJl6rlQXJIQU5q+5lmPOutA==
+react-hot-toast@^2.4.1:
+  version "2.4.1"
+  resolved "https://registry.yarnpkg.com/react-hot-toast/-/react-hot-toast-2.4.1.tgz#df04295eda8a7b12c4f968e54a61c8d36f4c0994"
+  integrity sha512-j8z+cQbWIM5LY37pR6uZR6D4LfseplqnuAO4co4u8917hBUvXlEqyP1ZzqVLcqoyUesZZv/ImreoCeHVDpE5pQ==
   dependencies:
     goober "^2.1.10"
 

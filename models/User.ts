@@ -52,7 +52,7 @@ const userSchema = new Schema(
     },
     competition: {
       type: String,
-      default: "bip2022",
+      default: "emergent",
     },
     activateAccToken: String,
     activateAccTokenExpires: Date,

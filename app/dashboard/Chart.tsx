@@ -29,7 +29,7 @@ const Chart = ({scores}: Props) => {
             <h6 className="overview_content">
              Competition Results
              <HiChartBar className="results_i ms-3 fs-3 "/>
-              <span className="comp_name ms-3">bip2022</span>
+              <span className="comp_name ms-3">emergent2023</span>
             </h6>
           </div>
 

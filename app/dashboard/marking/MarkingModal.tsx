@@ -97,7 +97,7 @@ const MarkingModal = ({ name, surname, bizzName, country, email }: Props) => {
 
   return (
     <>
-    {/* { loading && <ClientLoader/> } */}
+    
       <div
         className="modal grade_modal fade"
         id="GradeRubricModal"
@@ -130,7 +130,7 @@ const MarkingModal = ({ name, surname, bizzName, country, email }: Props) => {
               />
               <RubricTable onChangePoints={onChangePoints} />
             </div>
-            <div className="modal-footer">
+            <div className="modal-footer my-5">
               <button className="secondary_btn" type="button">
                 Total: {totalPoints} points
               </button>
