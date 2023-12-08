@@ -48,12 +48,7 @@ const matrix = [
     id: 12,
     score_title: "Visual presentation    (PowerPoint) ",
   },
-  {
-    id: 14,
-    score_title:
-      "Uniqueness of      Business idea  (Creative ideation   towards solutions)",
-  },
-
+  
   {
     id: 15,
     score_title: "Business idea:   scalability ",
